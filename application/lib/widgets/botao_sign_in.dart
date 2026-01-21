@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../routes/app_routes.dart';
 
 class BotaoSignIn extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -15,9 +14,7 @@ class BotaoSignIn extends StatelessWidget {
       width: double.infinity,
       height: 48,
       child: ElevatedButton(
-        onPressed: () {
-          Navigator.pushNamed(context, AppRoutes.home);
-        },
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.orange,
           shape: RoundedRectangleBorder(

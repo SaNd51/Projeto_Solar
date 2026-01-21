@@ -2,11 +2,26 @@ import 'package:flutter/material.dart';
 import '../widgets/app_logo.dart';
 import '../widgets/botao_sign_in.dart';
 import '../widgets/input_field.dart';
+import '../services/auth_service.dart';
+import '../routes/app_routes.dart';
 
-
-class ClientePage extends StatelessWidget {
+class ClientePage extends StatefulWidget {
   const ClientePage({super.key});
 
+  @override
+  State<ClientePage> createState() => _ClientePage();
+}
+
+class _ClientePage extends State<ClientePage> {
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    userController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,18 +50,23 @@ class ClientePage extends StatelessWidget {
               const SizedBox(height: 10),                    
 
               // Campo User
-              InputField(label: 'User', hint: 'Enter user'),
+              InputField(
+                label: 'User',
+                hint: 'Enter user',
+                controller: userController,
+              ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
 
               // Campo Password
               InputField(
                 label: 'Password',
                 hint: 'Enter password',
                 obscure: true,
+                controller: passwordController,
               ),
 
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
 
               Align(
                 alignment: Alignment.centerRight,
@@ -60,7 +80,22 @@ class ClientePage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              const BotaoSignIn(),
+              BotaoSignIn(
+              onPressed: () async {
+                final user = userController.text;
+                final password = passwordController.text;
+
+                final success = await AuthService.login(
+                  user: user,
+                  password: password,
+                );
+
+                if (success) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamed(context, AppRoutes.home);
+                }
+              },
+            ),
             ],
           ),
         ),

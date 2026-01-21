@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 import '../widgets/app_logo.dart';
 import '../widgets/botao_sign_in.dart';
 import '../widgets/input_field.dart';
+import '../services/auth_service.dart';
+import '../routes/app_routes.dart';
 
-
-class TecnicoPage extends StatelessWidget {
+class TecnicoPage extends StatefulWidget {
   const TecnicoPage({super.key});
+
+  @override
+  State<TecnicoPage> createState() => _TecnicoPage();
+}
+
+class _TecnicoPage extends State<TecnicoPage> {
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,20 +43,25 @@ class TecnicoPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 10),                    
+              
+              //Campo User
+              InputField(
+                label: 'User',
+                hint: 'Enter user',
+                controller: userController,
+              ),
 
-              // Campo User
-              InputField(label: 'User', hint: 'Enter user'),
-
-              const SizedBox(height: 16),
+              const SizedBox(height: 10),
 
               // Campo Password
               InputField(
                 label: 'Password',
                 hint: 'Enter password',
                 obscure: true,
+                controller: passwordController,
               ),
 
-              const SizedBox(height: 8),
+              const SizedBox(height: 10),
 
               Align(
                 alignment: Alignment.centerRight,
@@ -61,7 +75,22 @@ class TecnicoPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              const BotaoSignIn(),
+              BotaoSignIn(
+              onPressed: () async {
+                final user = userController.text;
+                final password = passwordController.text;
+
+                final success = await AuthService.login(
+                  user: user,
+                  password: password,
+                );
+
+                if (success) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamed(context, AppRoutes.home);
+                }
+              },
+            ),
             ],
           ),
         ),

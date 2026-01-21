@@ -2,9 +2,20 @@ import 'package:flutter/material.dart';
 import '../widgets/app_logo.dart';
 import '../widgets/botao_sign_in.dart';
 import '../widgets/input_field.dart';
+import '../services/create_service.dart';
+import '../routes/app_routes.dart';
 
-class CreatePage extends StatelessWidget {
+class CreatePage extends StatefulWidget {
   const CreatePage({super.key});
+
+  @override
+  State<CreatePage> createState() => _CreatePage();
+}
+
+class _CreatePage extends State<CreatePage> {
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,32 +45,51 @@ class CreatePage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              const Text(
-                'Crie uma conta',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              // Campo User
+              InputField(
+                label: 'User',
+                hint: 'Enter user',
+                controller: userController,
               ),
 
               const SizedBox(height: 10),
+              
+              // Campo Email
+              InputField(
+                label: 'Email',
+                hint: 'Enter e-mail',
+                controller: emailController,
+              ),
 
-              // Campo User
-              InputField(label: 'User', hint: 'Enter user'),
-
-              const SizedBox(height: 16),
-
-              InputField(label: 'E-mail', hint: 'Enter e-mail'),
-
+              const SizedBox(height: 10),
               // Campo Password
-              const SizedBox(height: 8),
-
               InputField(
                 label: 'Password',
                 hint: 'Enter password',
                 obscure: true,
+                controller: passwordController,
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
 
-              const BotaoSignIn(),
+              BotaoSignIn(
+              onPressed: () async {
+                final user = userController.text;
+                final email = emailController.text;
+                final password = passwordController.text;
+
+                final success = await AuthService.create(
+                  user: user,
+                  email: email,
+                  password: password,
+                );
+
+                if (success) {
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamed(context, AppRoutes.home);
+                }
+              },
+            ),
             ],
           ),
         ),

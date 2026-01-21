@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/login_page.dart';
-import '../pages/tecnico_page.dart';
-import '../pages/cliente_page.dart';
+import '../pages/technical_page.dart';
+import '../pages/client_page.dart';
 import '../pages/create_page.dart';
 import '../pages/home_page.dart';
 import 'app_routes.dart';
