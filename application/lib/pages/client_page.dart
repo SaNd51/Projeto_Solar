@@ -44,7 +44,11 @@ class _ClientePage extends State<ClientePage> {
 
               const Text(
                 'Bem-vindo Cliente!',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
               ),
 
               const SizedBox(height: 10),                    

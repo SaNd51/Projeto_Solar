@@ -26,7 +26,11 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 30),
               const Text(
                 'Seja bem-vindo!',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
               ),
 
               const SizedBox(height: 10),

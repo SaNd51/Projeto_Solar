@@ -23,7 +23,7 @@ class InputField extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w500, color: Color.fromARGB(255, 0, 0, 0)),
         ),
         const SizedBox(height: 6),
         TextField(
@@ -33,7 +33,7 @@ class InputField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint,
             filled: true,
-            fillColor: Colors.grey.shade200,
+            fillColor: const Color.fromARGB(255, 226, 221, 221),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide.none,

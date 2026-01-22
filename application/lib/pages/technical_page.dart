@@ -20,7 +20,10 @@ class _TecnicoPage extends State<TecnicoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 230, 135, 72),
-      appBar: AppBar(title: Text('Área do Técnico'), shadowColor: Colors.orange),
+      appBar: AppBar(
+        title: Text('Área do Técnico'),
+        shadowColor: Colors.orange,
+      ),
       body: Center(
         child: Container(
           width: 365,
@@ -39,11 +42,15 @@ class _TecnicoPage extends State<TecnicoPage> {
 
               const Text(
                 'Bem-vindo Técnico!',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
               ),
 
-              const SizedBox(height: 10),                    
-              
+              const SizedBox(height: 10),
+
               //Campo User
               InputField(
                 label: 'User',
@@ -76,26 +83,25 @@ class _TecnicoPage extends State<TecnicoPage> {
               const SizedBox(height: 16),
 
               BotaoSignIn(
-              onPressed: () async {
-                final user = userController.text;
-                final password = passwordController.text;
+                onPressed: () async {
+                  final user = userController.text;
+                  final password = passwordController.text;
 
-                final success = await AuthService.login(
-                  user: user,
-                  password: password,
-                );
+                  final success = await AuthService.login(
+                    user: user,
+                    password: password,
+                  );
 
-                if (success) {
-                  // ignore: use_build_context_synchronously
-                  Navigator.pushNamed(context, AppRoutes.home);
-                }
-              },
-            ),
+                  if (success) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushNamed(context, AppRoutes.home);
+                  }
+                },
+              ),
             ],
           ),
         ),
       ),
     );
   }
-  
 }

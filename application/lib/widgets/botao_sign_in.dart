@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class BotaoSignIn extends StatelessWidget {
   final VoidCallback? onPressed;
-
+  
   const BotaoSignIn({
     super.key,
     this.onPressed,
@@ -31,5 +31,6 @@ class BotaoSignIn extends StatelessWidget {
         ),
       ),
     );
+    
   }
 }

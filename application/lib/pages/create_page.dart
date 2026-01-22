@@ -20,19 +20,20 @@ class _CreatePage extends State<CreatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 230, 135, 72),
+      //backgroundColor: const Color.fromARGB(255, 37, 37, 37),
       appBar: AppBar(title: Text('Criar Conta'), shadowColor: Colors.orange),
       body: Center(
         child: Container(
           width: 365,
           padding: const EdgeInsets.all(50),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(24),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+            
               // Ícone
               const AppLogo(),
 
@@ -40,11 +41,16 @@ class _CreatePage extends State<CreatePage> {
 
               const Text(
                 'Crie uma conta',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
               ),
 
               const SizedBox(height: 10),
 
+              
               // Campo User
               InputField(
                 label: 'User',
